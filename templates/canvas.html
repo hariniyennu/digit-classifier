@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='canvas.css') }}">
+</head>
+<body>
+    <h1>Draw a Digit</h1>
+    <canvas id="canvas" width="280" height="280"></canvas>
+    <br>
+    <button onclick="clearCanvas()">Clear</button>
+    <button onclick="predictDigit()">Predict</button>
+    <!-- <button onclick="downloadCanvasImage()">Download Image</button> -->
+    <h2 id="result"></h2>
+    <script src="{{ url_for('static', filename='canvas.js') }}"></script>
+</body>
+</html>

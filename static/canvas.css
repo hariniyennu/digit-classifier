@@ -1,0 +1,14 @@
+body { 
+    text-align: center; 
+    font-family: Arial, sans-serif; 
+}
+canvas { 
+    border: 2px solid black; 
+    background: white; 
+}
+button {
+    font-size: 16px;
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
