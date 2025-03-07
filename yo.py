@@ -18,7 +18,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return render_template("canvas.html")  
-
+    
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
@@ -28,17 +28,14 @@ def predict():
         # Convert to NumPy array and normalize
         img = np.array(img).astype("float32") / 255.0  
         img = 1 - img  
-        
         img = img.reshape(1, 28, 28, 1)  
-        # print(img[0, :, 14])  # Print the middle column of the image
         # print("Expected Model Input Shape:", model.input_shape)
         # print("Processed Image Shape:", img.shape)
         # print("First few pixel values:", img.flatten()[:10])
 
         # Get model prediction
         prediction = model.predict(img)
-        digit = np.argmax(prediction)  # Extract the predicted digit
-
+        digit = np.argmax(prediction)  
         return jsonify({"digit": int(digit)})
     
     except Exception as e:
