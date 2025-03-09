@@ -2,17 +2,11 @@ from flask import Flask, request, jsonify, render_template
 import numpy as np
 import tensorflow as tf
 from PIL import Image
-import os
 
-# Ensure the model file exists
 MODEL_PATH = "model/digit_classifier.keras"
-if not os.path.exists(MODEL_PATH):
-    raise FileNotFoundError(f"Model file not found: {MODEL_PATH}")
-
 # Load the trained model
 model = tf.keras.models.load_model(MODEL_PATH)
 
-# Initialize Flask app
 app = Flask(__name__)
 
 @app.route("/")
@@ -25,7 +19,7 @@ def predict():
         file = request.files["image"]
         img = Image.open(file).convert("L")  # Convert to grayscale
         img = img.resize((28, 28))  # Resize to match model input size
-        # Convert to NumPy array and normalize
+        # Convert to numpy array and normalize
         img = np.array(img).astype("float32") / 255.0  
         img = 1 - img  
         img = img.reshape(1, 28, 28, 1)  
